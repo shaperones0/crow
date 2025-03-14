@@ -60,7 +60,7 @@ project = LiveProject(
 )
 
 # Query pages later in your app (e.g. Flask)
-@app.route('/p/<string:title')
+@app.route('/p/<string:title>')
 def page(title: str):
     content = project.get_rendered_content(title)
     if content is None:
