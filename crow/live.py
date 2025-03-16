@@ -134,11 +134,11 @@ class LiveProject:
             page (Page): The page to render.
         """
         source_content = page.source_path.read_text(encoding="utf-8")
+        page.modified = os.path.getmtime(page.source_path)
         rendered_content = self.renderer.render(source_content, page)
         output_path = self.page_output_path(page)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(rendered_content, encoding="utf-8")
-        page.modified = os.path.getmtime(page.source_path)
 
     def page_output_path(self, page: Page) -> Path:
         """Calculates the output file path for a given page.
